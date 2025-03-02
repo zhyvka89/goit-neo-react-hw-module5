@@ -13,14 +13,20 @@ function MovieReviews() {
   }, [movieId]);
 
   return (
-    <ol>
-      {reviews.map(({ id, author, content }) => (
-        <li key={id}>
-          <h4>Author: {author}</h4>
-          <p>{content}</p>
-        </li>
-      ))}
-    </ol>
+    <div>
+      {reviews.length > 0 ? (
+        <ol>
+          {reviews.map(({ id, author, content }) => (
+            <li key={id}>
+              <h4>Author: {author}</h4>
+              <p>{content}</p>
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <p>No reviews</p>
+      )}
+    </div>
   );
 }
 

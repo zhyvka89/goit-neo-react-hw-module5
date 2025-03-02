@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import MovieSearchForm from '../../components/MovieSearchForm/MovieSearchForm';
-import MoviesList from '../../components/MoviesList/MoviesList';
+import MovieList from '../../components/MovieList/MovieList';
 import * as moviesApi from '../../services/movies-api';
 
-// import styles from './MoviesPageView.module.scss';
 
 function MoviesPageView() {
   const [query, setQuery] = useState('');
@@ -33,10 +32,12 @@ function MoviesPageView() {
     setQuery(query);
   };
 
+  
+
   return (
     <section>
-      <MovieSearchForm onSubmitForm={onSubmitForm} />
-      <MoviesList array={moviesByQuery}/>
+      <MovieSearchForm onSubmitForm={onSubmitForm}/>
+      <MovieList array={moviesByQuery}/>
     </section>
   );
 }

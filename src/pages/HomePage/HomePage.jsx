@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import * as moviesApi from "../../services/movies-api";
-import MoviesList from "../../components/MoviesList/MoviesList";
+import MovieList from "../../components/MovieList/MovieList";
 
 import { container } from "./HomePage.module.css";
 
@@ -13,7 +13,7 @@ function HomePage() {
 
   return (
     <section className={container}>
-      {movies && <MoviesList array={movies} />}
+      {movies && <MovieList array={movies} />}
     </section>
   );
 }

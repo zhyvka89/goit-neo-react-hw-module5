@@ -1,12 +1,17 @@
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom'
 import Button from '../Button/Button';
 import {form, input} from './MovieSearchForm.module.css';
 
 function MovieSearchForm({ onSubmitForm }) {
+  // const { query } = useParams();
   const [query, setQuery] = useState('');
+  const [params, setParams] = useSearchParams()
 
   const handleQueryChange = e => {
     setQuery(e.currentTarget.value.toLowerCase());
+    params.set('query', e.target.value)
+    setParams(params)
   };
 
   const handleSubmitForm = e => {
