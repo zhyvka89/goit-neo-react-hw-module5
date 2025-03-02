@@ -1,9 +1,8 @@
-
-// import styles from './Button.module.scss';
+import {button} from './Button.module.css';
 
 function Button({ title, type = 'button', onBtnClick }) {
   return (
-    <button type={type} onClick={onBtnClick}>
+    <button className={button} type={type} onClick={onBtnClick}>
       {title}
     </button>
   );

@@ -1,5 +1,5 @@
-import { NavLink } from 'react-router-dom';
-// import styles from './MovieCard.module.scss';
+import { NavLink } from "react-router-dom";
+import { card_wrapper, link, activeLink } from "./MovieCard.module.css";
 
 function MovieCard({ movie }) {
   const {
@@ -13,50 +13,50 @@ function MovieCard({ movie }) {
   } = movie;
 
   return (
-    <div>
+    <div className={card_wrapper}>
       <div>
-        <div>
-          <img
-            src={
-              backdrop_path
-                ? `https://image.tmdb.org/t/p/w500/${backdrop_path}`
-                : `https://image.tmdb.org/t/p/w500/${poster_path}`
-            }
-            alt="movie"
-          />
-          <h1>{original_title}</h1>
-          <h4>{release_date}</h4>
-          <span>
-            {vote_average}
-          </span>
-          <ul>
-            {genres.map(({ id, name }) => (
-              <li key={id}>
-                {name}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <p>{overview}</p>
-        </div>
+        <img
+          src={
+            backdrop_path
+              ? `https://image.tmdb.org/t/p/w500/${backdrop_path}`
+              : `https://image.tmdb.org/t/p/w500/${poster_path}`
+          }
+          alt="movie"
+        />
+        <h1>{original_title}</h1>
+        <h4>{release_date}</h4>
+        <span>{vote_average}</span>
         <ul>
-          <li>
-            <NavLink
-              to={'cast'}
-            >
-              Cast
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to={'reviews'}
-            >
-              Reviews
-            </NavLink>
-          </li>
+          {genres.map(({ id, name }) => (
+            <li key={id}>{name}</li>
+          ))}
         </ul>
       </div>
+      <div>
+        <p>{overview}</p>
+      </div>
+      <ul>
+        <li>
+          <NavLink
+            to={"cast"}
+            className={({ isActive }) =>
+              `${link} ` + (isActive ? `${activeLink}` : "")
+            }
+          >
+            Cast
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to={"reviews"}
+            className={({ isActive }) =>
+              `${link} ` + (isActive ? `${activeLink}` : "")
+            }
+          >
+            Reviews
+          </NavLink>
+        </li>
+      </ul>
     </div>
   );
 }

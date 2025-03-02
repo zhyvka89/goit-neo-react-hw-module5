@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import * as moviesApi from '../../services/movies-api';
-import MoviesList from '../../components/MoviesList/MoviesList';
+import { useEffect, useState } from "react";
+import * as moviesApi from "../../services/movies-api";
+import MoviesList from "../../components/MoviesList/MoviesList";
 
-// import styles from './HomePageView.module.scss';
+import { container } from "./HomePage.module.css";
 
 function HomePage() {
   const [movies, setMovies] = useState([]);
@@ -12,10 +12,10 @@ function HomePage() {
   }, []);
 
   return (
-    <section>
-      {movies && <MoviesList array={movies}/>}
+    <section className={container}>
+      {movies && <MoviesList array={movies} />}
     </section>
   );
 }
 
-export default HomePage
+export default HomePage;

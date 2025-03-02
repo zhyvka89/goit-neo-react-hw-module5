@@ -1,0 +1,35 @@
+.movie_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.movie_item {
+  flex-basis: calc((100% - 4 * 20px) / 5);
+}
+
+.movie_img_thumb {
+  width: 100%;
+}
+
+.movie_img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+.text {
+  color: gray;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.link {
+  text-decoration: none;
+}

@@ -1,0 +1,26 @@
+.cast_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.cast_item {
+  flex-basis: calc((100% - 4 * 20px) / 5);
+}
+
+.cast_img_thumb {
+  width: 100%;
+}
+
+.cast_img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+.text {
+  color: gray;
+}

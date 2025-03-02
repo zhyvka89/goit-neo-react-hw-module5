@@ -1,36 +1,32 @@
-import { useEffect, useState, Suspense, useRef } from 'react';
-import {
-  useParams,
-  Outlet, useNavigate, useLocation
-} from 'react-router-dom';
+import { useEffect, useState, Suspense, useRef } from "react";
+import { useParams, Outlet, useNavigate, useLocation } from "react-router-dom";
 
-import * as moviesApi from '../../services/movies-api';
-import Button from '../../components/Button/Button';
-import MovieCard from '../../components/MovieCard/MovieCard';
+import * as moviesApi from "../../services/movies-api";
+import Button from "../../components/Button/Button";
+import MovieCard from "../../components/MovieCard/MovieCard";
 
-// import styles from './MovieDetailsView.module.scss';
-
+import { container } from "./MovieDetailsPage.module.css";
 
 function MovieDetailsPage() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const location = useLocation();
-  const backLink = useRef(location.state ?? '/')
+  const backLink = useRef(location.state ?? "/");
 
   useEffect(() => {
     moviesApi.fetchMovieById(movieId).then(setMovie);
   }, [movieId]);
 
   const handleGoBackBtn = () => {
-    navigate(backLink.current)
+    navigate(backLink.current);
   };
 
   return (
-    <section>
+    <section className={container}>
       <Button title="Go Back" onBtnClick={handleGoBackBtn} />
 
-      {movie && <MovieCard movie={movie}/>}
+      {movie && <MovieCard movie={movie} />}
       <Suspense fallback={<p>Loading child component..</p>}>
         <Outlet />
       </Suspense>
@@ -38,4 +34,4 @@ function MovieDetailsPage() {
   );
 }
 
-export default MovieDetailsPage
+export default MovieDetailsPage;

@@ -1,68 +1,69 @@
 import { Link, useLocation } from 'react-router-dom';
-// import styles from './MoviesList.module.scss';
-
+import { movie_list, movie_item, movie_img_thumb, movie_img, link, text, title} from './MoviesList.module.css';
+const defaultImg ="https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg";
 function MoviesList({ array }) {
   const location = useLocation();
-  console.log(location)
   
   return (
-    <ol>
+    <ul className={movie_list}>
       {array.map(
-        ({ id, release_date, poster_path, vote_average, backdrop_path }) => (
-          <li key={id}>
+        ({ id, release_date, poster_path, original_title}) => (
+          <li className={movie_item} key={id}>
             {location.pathname === '/' ? (
               <Link
+                className={link}
                 to={`movies/${id}`}
                 state={location}
               >
-                <div>
+                <div className={movie_img_thumb}>
                   <img
+                    className={movie_img}
                     src={
                       poster_path
                         ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-                        : `https://image.tmdb.org/t/p/w500/${backdrop_path}`
+                        : defaultImg
                     }
                     alt="movie"
                   />
-                  <div>
+                  <div className={text}>
                     <span>{release_date}</span>
                     <br />
-                    <span>
-                      {vote_average}
+                    <span className={title}>
+                      {original_title}
                     </span>
                   </div>
                 </div>
               </Link>
             ) : (
               <Link
+                className={link}
                 to={`${id}`}
                 state={location}
               >
-                <div>
+                <div  className={movie_img_thumb}>
                   <img
+                   className={movie_img}
                     src={
                       poster_path
                         ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-                        : `https://image.tmdb.org/t/p/w500/${backdrop_path}`
+                        : defaultImg
                     }
                     alt="movie"
                   />
-                  <div>
+                  <div className={text}>
                     <span>{release_date}</span>
                     <br />
-                    <span>
-                      {vote_average}
+                    <span className={title}>
+                      {original_title}
                     </span>
                   </div>
                 </div>
               </Link>
             )}
-           
-           
           </li>
         )
       )}
-    </ol>
+    </ul>
   );
 }
 
