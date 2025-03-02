@@ -6,9 +6,9 @@ import * as moviesApi from '../../services/movies-api';
 
 
 function MoviesPageView() {
-  const [query, setQuery] = useState('');
   const [moviesByQuery, setMoviesByQuery] = useState([]);
-  const [searchParams] = useSearchParams();
+  const [params, setParams] = useSearchParams();
+  const query = params.get('query') ?? '';
 
   useEffect(() => {
     if (query === '') return;
@@ -18,25 +18,17 @@ function MoviesPageView() {
     });
   }, [query]);
 
-  useEffect(() => {
-    const savedQuery = searchParams.get('query');
-
-    if (savedQuery === null) return;
-
-    moviesApi.fetchMoviesByQuery(savedQuery).then(({ results }) => {
-      setMoviesByQuery(results);
-    });
-  }, [searchParams]);
-
-  const onSubmitForm = query => {
-    setQuery(query);
+  const onSubmitForm = e => {
+    const form = e.currentTarget;
+    const queryValue = form.elements.search.value.trim();
+    params.set('query', queryValue)
+    setParams(params)
   };
 
   
-
   return (
     <section>
-      <MovieSearchForm onSubmitForm={onSubmitForm}/>
+      <MovieSearchForm onSubmitForm={onSubmitForm} query={query}/>
       <MovieList array={moviesByQuery}/>
     </section>
   );
